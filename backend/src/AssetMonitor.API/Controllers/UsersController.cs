@@ -52,4 +52,18 @@ public class UsersController : ControllerBase
 
         return NoContent();
     }
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(
+    Guid id,
+    UpdateUserDto dto)
+    {
+        var user = await _service.UpdateAsync(
+            id,
+            dto);
+
+        if (user == null)
+            return NotFound();
+
+        return Ok(user);
+    }
 }

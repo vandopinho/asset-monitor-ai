@@ -35,14 +35,16 @@ public class User : BaseEntity
     {
         Active = false;
     }
-    public void Activate()
-    {
-        Active = true;
-    }
 
     public void Delete()
     {
         IsDeleted = true;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void Activate()
+    {
+        Active = true;
         UpdatedAt = DateTime.UtcNow;
     }
 
@@ -56,4 +58,5 @@ public class User : BaseEntity
         Role = role;
         UpdatedAt = DateTime.UtcNow;
     }
+
 }

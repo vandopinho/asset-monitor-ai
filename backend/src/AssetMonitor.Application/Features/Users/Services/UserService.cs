@@ -20,8 +20,8 @@ public class UserService : IUserService
         if (existingUser != null)
             throw new Exception("User already exists.");
 
-        // Temporário: depois usaremos BCrypt
-        var passwordHash = dto.Password;
+        var passwordHash =
+            BCrypt.Net.BCrypt.HashPassword(dto.Password);
 
         var user = new User(
             dto.Name,
@@ -30,6 +30,7 @@ public class UserService : IUserService
             dto.Role);
 
         await _repository.AddAsync(user);
+
         await _repository.SaveChangesAsync();
 
         return Map(user);
@@ -72,5 +73,26 @@ public class UserService : IUserService
         await _repository.UpdateAsync(user);
 
         await _repository.SaveChangesAsync();
+    }
+    public async Task<UserDto?> UpdateAsync(
+    Guid id,
+    UpdateUserDto dto)
+    {
+        var user = await _repository.GetByIdAsync(id);
+
+        if (user == null)
+            return null;
+
+        user.Update(dto.Name, dto.Email, dto.Role);
+
+        if (dto.Active)
+            user.Activate();
+        else
+            user.Deactivate();
+
+        await _repository.UpdateAsync(user);
+        await _repository.SaveChangesAsync();
+
+        return Map(user);
     }
 }
