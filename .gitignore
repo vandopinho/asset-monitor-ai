@@ -8,18 +8,21 @@ obj/
 # VS Code
 .vscode/
 
+# Rider
+.idea/
+
 # Node
 node_modules/
 
-# Environment
-.env
-.env.*
+# React
+dist/
 
 # Logs
 *.log
 
-# React
-dist/
+# Environment
+.env
+.env.*
 
 # Coverage
 coverage/
