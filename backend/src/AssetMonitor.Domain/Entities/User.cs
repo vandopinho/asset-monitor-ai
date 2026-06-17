@@ -4,11 +4,35 @@ namespace AssetMonitor.Domain.Entities;
 
 public class User : BaseEntity
 {
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; private set; } = string.Empty;
 
-    public string Email { get; set; } = string.Empty;
+    public string Email { get; private set; } = string.Empty;
 
-    public string PasswordHash { get; set; } = string.Empty;
+    public string PasswordHash { get; private set; } = string.Empty;
 
-    public string Role { get; set; } = "Operator";
+    public string Role { get; private set; } = "Operator";
+
+    public bool Active { get; private set; } = true;
+
+    private User()
+    {
+    }
+
+    public User(
+        string name,
+        string email,
+        string passwordHash,
+        string role = "Operator")
+    {
+        Name = name;
+        Email = email;
+        PasswordHash = passwordHash;
+        Role = role;
+        Active = true;
+    }
+
+    public void Deactivate()
+    {
+        Active = false;
+    }
 }
