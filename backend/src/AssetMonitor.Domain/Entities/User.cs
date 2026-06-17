@@ -35,4 +35,25 @@ public class User : BaseEntity
     {
         Active = false;
     }
+    public void Activate()
+    {
+        Active = true;
+    }
+
+    public void Delete()
+    {
+        IsDeleted = true;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void Update(
+        string name,
+        string email,
+        string role)
+    {
+        Name = name;
+        Email = email;
+        Role = role;
+        UpdatedAt = DateTime.UtcNow;
+    }
 }

@@ -9,4 +9,5 @@ public interface IUserService
     Task<List<UserDto>> GetAllAsync();
 
     Task<UserDto?> GetByIdAsync(Guid id);
+    Task DeleteAsync(Guid id);
 }

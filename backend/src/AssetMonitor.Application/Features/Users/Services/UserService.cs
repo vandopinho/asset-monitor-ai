@@ -60,4 +60,17 @@ public class UserService : IUserService
             Active = user.Active
         };
     }
+    public async Task DeleteAsync(Guid id)
+    {
+        var user = await _repository.GetByIdAsync(id);
+
+        if (user == null)
+            throw new Exception("User not found.");
+
+        user.Delete();
+
+        await _repository.UpdateAsync(user);
+
+        await _repository.SaveChangesAsync();
+    }
 }
