@@ -1,8 +1,9 @@
 using AssetMonitor.Application.Features.Users.DTOs;
 using AssetMonitor.Application.Features.Users.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
 namespace AssetMonitor.API.Controllers;
+
 
 [ApiController]
 [Route("api/[controller]")]
@@ -15,9 +16,9 @@ public class UsersController : ControllerBase
         _service = service;
     }
 
+    [AllowAnonymous]
     [HttpPost]
-    public async Task<IActionResult> Create(
-        CreateUserDto dto)
+    public async Task<IActionResult> Create(CreateUserDto dto)
     {
         var user = await _service.CreateAsync(dto);
 
@@ -28,6 +29,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAll()
     {
         var users = await _service.GetAllAsync();
@@ -36,6 +38,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
+    [Authorize]
     public async Task<IActionResult> GetById(Guid id)
     {
         var user = await _service.GetByIdAsync(id);
@@ -46,6 +49,7 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
     [HttpDelete("{id:guid}")]
+    [Authorize]
     public async Task<IActionResult> Delete(Guid id)
     {
         await _service.DeleteAsync(id);
@@ -53,6 +57,7 @@ public class UsersController : ControllerBase
         return NoContent();
     }
     [HttpPut("{id:guid}")]
+    [Authorize]
     public async Task<IActionResult> Update(
     Guid id,
     UpdateUserDto dto)
