@@ -8,7 +8,8 @@ using AssetMonitor.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using AssetMonitor.Application.Features.Authentication.Interfaces;
+using AssetMonitor.Application.Features.Authentication.Services;
 namespace AssetMonitor.Infrastructure;
 
 public static class DependencyInjection
@@ -28,6 +29,7 @@ public static class DependencyInjection
         // 👤 Users
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         // 🔐 JWT Settings (bind correto)
         services.AddOptions<JwtSettings>()
