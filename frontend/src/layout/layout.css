@@ -1,0 +1,46 @@
+.appShell {
+  display: flex;
+  height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* SIDEBAR FIXA */
+.sidebar {
+  width: 260px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 18px;
+}
+
+/* CONTEÚDO DIREITA */
+.appMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* TOPBAR */
+.topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* CONTENT AREA */
+.appContent {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}

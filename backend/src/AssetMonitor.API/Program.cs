@@ -69,6 +69,18 @@ builder.Services
             };
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
@@ -81,7 +93,7 @@ if (app.Environment.IsDevelopment())
 
 // HTTPS primeiro
 app.UseHttpsRedirection();
-
+app.UseCors("AllowFrontend");
 // Depois autenticação
 app.UseAuthentication();
 app.UseAuthorization();
