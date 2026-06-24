@@ -1,128 +1,156 @@
-# 🚀 Asset Monitor AI
+🚀 Asset Monitor AI
 
-Plataforma inteligente de monitoramento de ativos com dashboards, alarmes e assistente de IA.
 
----
 
-## 📌 Visão Geral
 
-O **Asset Monitor AI** é uma plataforma para monitoramento de ativos em tempo real, com foco em:
 
-- Visualização de dados operacionais
-- Controle de equipamentos e clientes
-- Geração de relatórios
-- Autenticação segura com JWT
-- Base preparada para IA e automações futuras
 
----
 
-## ⚙️ Funcionalidades
 
-- 👤 Gestão de usuários e autenticação
-- 🏢 Gestão de clientes
-- ⚙️ Gestão de equipamentos
-- 📊 Dashboards de monitoramento
-- 🚨 Sistema de alarmes (em evolução)
-- 📄 Relatórios PDF (em evolução)
-- 🔐 Autenticação JWT
-- 🤖 Integração futura com IA
 
----
 
-## 🧱 Stack
+⚡ Visão Geral
 
-### Backend
-- ASP.NET Core 9
-- Entity Framework Core
-- PostgreSQL
-- JWT Authentication
-- Clean Architecture
+O Asset Monitor AI é uma plataforma SaaS moderna para monitoramento de ativos em tempo real, com foco em escalabilidade, automação e experiência de usuário nível Stripe / Linear.
 
-### Frontend
-- React
-- TypeScript
-- Material UI
+🧠 Demonstração (UI Atual)
 
-### Infraestrutura
-- Docker Compose (futuro)
+Projeto em evolução contínua
 
-### Inteligência Artificial
-- OpenAI (planejado)
-- Ollama (planejado)
+Dashboard
 
----
+Usuários
 
-## 🏛️ Arquitetura
+Login
 
-- Clean Architecture
-- Repository Pattern
-- Dependency Injection
-- SOLID Principles
-- Camadas bem definidas:
-  - Domain
-  - Application
-  - Infrastructure
-  - API
-
----
-
-## 🔐 Autenticação
-
-O projeto já possui base de autenticação:
-
-- JWT Token Generator implementado
-- Configuração via `appsettings.json`
-- Claims:
-  - UserId
-  - Email
-  - Role
-- Expiração configurável
-
----
-
-## 📦 Roadmap
-
-### Sprint 1 - Base ✔
-- [x] Estrutura do projeto
-- [x] Clean Architecture
-- [x] Configuração inicial API
-
-### Sprint 2 - Autenticação ✔
-- [x] JWT Token Generator
-- [x] DTOs de login
-- [x] Dependency Injection
-- [x] Configuração de segurança base
-
-### Sprint 3 - Core
-- [ ] Login endpoint completo
-- [ ] Hash de senha (BCrypt)
-- [ ] CRUD de usuários
-- [ ] CRUD de equipamentos
-
-### Sprint 4 - Dashboards
-- [ ] Queries analíticas
-- [ ] Gráficos e métricas
-- [ ] Integração com frontend
-
-### Sprint 5 - IA & Extras
-- [ ] Assistente IA
-- [ ] Relatórios PDF
-- [ ] Alertas inteligentes
-- [ ] SignalR (tempo real)
-
----
-
-## 🚀 Status Atual
-
-👉 Backend: estrutura base + autenticação JWT iniciada  
-👉 Frontend: em desenvolvimento  
-👉 Banco: PostgreSQL configurado  
-👉 Sprint atual: autenticação base finalizada
-
----
-
-## 🧪 Como rodar o backend
-
-```bash
+🎯 Funcionalidades
+✔️ Implementado
+Autenticação JWT (base)
+Layout SaaS (Sidebar + Topbar estilo Stripe/Linear)
+Dashboard com KPIs iniciais
+CRUD de usuários (frontend)
+Design System próprio com CSS variables
+Estrutura Clean Architecture no backend
+🚧 Em desenvolvimento
+Login completo com hash de senha (BCrypt)
+CRUD de equipamentos
+CRUD de clientes
+Paginação e filtros
+Loading states / skeleton UI
+🔮 Futuro
+Alertas em tempo real (SignalR)
+Relatórios PDF automáticos
+Assistente IA integrado
+Dashboards analíticos avançados
+Multi-tenant SaaS
+🧱 Stack
+Backend
+ASP.NET Core 9
+Entity Framework Core
+PostgreSQL
+JWT Authentication
+Clean Architecture
+Frontend
+React + TypeScript
+Vite
+React Router DOM
+Axios
+CSS Design System próprio (SaaS UI)
+Infraestrutura (futuro)
+Docker Compose
+CI/CD (GitHub Actions)
+Deploy cloud
+IA (planejado)
+OpenAI API
+Ollama (local LLM)
+🏛️ Arquitetura
+Clean Architecture
+Repository Pattern
+Dependency Injection
+SOLID Principles
+Camadas:
+Domain
+Application
+Infrastructure
+API
+🔐 Autenticação
+JWT Token Provider
+Claims:
+UserId
+Email
+Role
+Configuração via appsettings.json
+📊 Roadmap (Sprint baseado)
+🟦 Sprint 1 — Base ✔
+Estrutura inicial do projeto
+Backend + frontend setup
+Clean Architecture
+🟦 Sprint 2 — Auth ✔
+JWT implementado
+Estrutura de login
+Segurança base
+🟨 Sprint 3 — Core Backend (em andamento)
+Login completo
+Hash de senha (BCrypt)
+CRUD usuários
+CRUD equipamentos
+🟪 Sprint 4 — Frontend SaaS UI (em andamento)
+Layout Stripe/Linear
+Dashboard base
+Tabela de usuários
+UX foundation
+🟩 Sprint 5 — Inteligência & Tempo Real (futuro)
+SignalR (real-time)
+IA assistant
+Reports PDF
+Analytics avançado
+🎨 UI / UX
+Sidebar fixa estilo SaaS (Stripe/Linear inspired)
+Topbar contextual por rota
+Design system com CSS variables
+Hierarquia visual limpa e consistente
+Base pronta para escala de produto real
+🖥️ Como rodar
+Backend
 cd src/AssetMonitor.API
 dotnet run
+Frontend
+cd frontend
+npm install
+npm run dev
+📌 Estrutura
+AssetMonitorAI
+│
+├── backend/
+│   ├── Domain
+│   ├── Application
+│   ├── Infrastructure
+│   └── API
+│
+├── frontend/
+│   ├── components
+│   ├── pages
+│   ├── layout
+│   ├── services
+│   └── styles
+💼 Recruiter Ready
+
+Este projeto demonstra:
+
+Arquitetura profissional escalável
+Frontend SaaS moderno estilo Stripe/Linear
+Backend estruturado em Clean Architecture
+Separação real de responsabilidades
+Base de produto real (não CRUD simples)
+🚀 Status Atual
+Backend: base + autenticação inicial
+Frontend: SaaS UI inicial concluído
+Banco: PostgreSQL configurado
+Sprint atual: evolução do core backend + refinamento UI
+⭐ Objetivo
+
+Evoluir para um SaaS real de mercado, com padrão visual e arquitetural equivalente a:
+
+Stripe
+Linear
+Datadog
