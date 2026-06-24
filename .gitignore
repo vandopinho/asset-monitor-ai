@@ -1,28 +1,42 @@
-# Build
-bin/
-obj/
+# ======================
+# BACKEND (.NET)
+# ======================
+**/bin/
+**/obj/
+**/.vs/
 
-# Visual Studio
-.vs/
+# ======================
+# FRONTEND (Node/React)
+# ======================
+**/node_modules/
+**/dist/
 
-# VS Code
-.vscode/
-
-# Rider
-.idea/
-
-# Node
-node_modules/
-
-# React
-dist/
-
-# Logs
+# ======================
+# LOGS
+# ======================
 *.log
 
-# Environment
+# ======================
+# ENV FILES
+# ======================
 .env
 .env.*
+**/.env
+**/.env.*
 
-# Coverage
+# ======================
+# IDEs
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# OS
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# TEST COVERAGE
+# ======================
 coverage/

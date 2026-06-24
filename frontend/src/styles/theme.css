@@ -1,0 +1,66 @@
+:root {
+  /* BACKGROUND */
+  --bg: #0a0f1c;
+
+  /* SURFACES */
+  --surface: #111827;
+  --surface-2: #1b2433;
+
+  /* TEXT */
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+
+  /* BRAND */
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+
+  /* STATUS */
+  --danger: #ef4444;
+
+  /* BORDER (mais sutil tipo Stripe) */
+  --border: rgba(255, 255, 255, 0.06);
+
+  /* DESIGN SYSTEM */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  /* SPACING SYSTEM (ESSENCIAL PRA SaaS) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* melhora TODOS botões automaticamente */
+button {
+  font-family: inherit;
+}
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
