@@ -1,7 +1,7 @@
 using AssetMonitor.Application.Features.Users.DTOs;
 using AssetMonitor.Application.Features.Users.Interfaces;
 using AssetMonitor.Domain.Entities;
-
+using AssetMonitor.Application.Common.Exceptions;
 namespace AssetMonitor.Application.Features.Users.Services;
 
 public class UserService : IUserService
@@ -18,7 +18,7 @@ public class UserService : IUserService
         var existingUser = await _repository.GetByEmailAsync(dto.Email);
 
         if (existingUser != null)
-            throw new Exception("User already exists.");
+            throw new UserAlreadyExistsException(dto.Email);
 
         var passwordHash =
             BCrypt.Net.BCrypt.HashPassword(dto.Password);
@@ -66,7 +66,7 @@ public class UserService : IUserService
         var user = await _repository.GetByIdAsync(id);
 
         if (user == null)
-            throw new Exception("User not found.");
+            throw new UserNotFoundException(id);
 
         user.Delete();
 
@@ -81,7 +81,15 @@ public class UserService : IUserService
         var user = await _repository.GetByIdAsync(id);
 
         if (user == null)
-            return null;
+            throw new UserNotFoundException(id);
+
+        var existingUser = await _repository.GetByEmailAsync(dto.Email);
+
+        if (existingUser != null &&
+            existingUser.Id != id)
+        {
+            throw new UserAlreadyExistsException(dto.Email);
+        }
 
         user.Update(dto.Name, dto.Email, dto.Role);
 

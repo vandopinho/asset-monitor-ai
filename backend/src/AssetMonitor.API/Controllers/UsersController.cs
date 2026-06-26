@@ -2,6 +2,7 @@ using AssetMonitor.Application.Features.Users.DTOs;
 using AssetMonitor.Application.Features.Users.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using AssetMonitor.Application.Common.Responses;
 namespace AssetMonitor.API.Controllers;
 
 
@@ -25,7 +26,8 @@ public class UsersController : ControllerBase
         return CreatedAtAction(
             nameof(GetById),
             new { id = user.Id },
-            user);
+            ApiResponse<UserDto>.Ok(user)
+        );
     }
 
     [HttpGet]
@@ -34,7 +36,7 @@ public class UsersController : ControllerBase
     {
         var users = await _service.GetAllAsync();
 
-        return Ok(users);
+        return Ok(ApiResponse<List<UserDto>>.Ok(users));
     }
 
     [HttpGet("{id:guid}")]
@@ -46,8 +48,9 @@ public class UsersController : ControllerBase
         if (user == null)
             return NotFound();
 
-        return Ok(user);
+        return Ok(ApiResponse<UserDto>.Ok(user));
     }
+
     [HttpDelete("{id:guid}")]
     [Authorize]
     public async Task<IActionResult> Delete(Guid id)
@@ -56,19 +59,13 @@ public class UsersController : ControllerBase
 
         return NoContent();
     }
+
     [HttpPut("{id:guid}")]
     [Authorize]
-    public async Task<IActionResult> Update(
-    Guid id,
-    UpdateUserDto dto)
+    public async Task<IActionResult> Update(Guid id, UpdateUserDto dto)
     {
-        var user = await _service.UpdateAsync(
-            id,
-            dto);
+        var user = await _service.UpdateAsync(id, dto);
 
-        if (user == null)
-            return NotFound();
-
-        return Ok(user);
+        return Ok(ApiResponse<UserDto>.Ok(user));
     }
 }

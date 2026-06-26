@@ -1,4 +1,4 @@
-namespace AssetMonitor.Application.DTOs.Auth;
+namespace AssetMonitor.Application.Features.Authentication.DTOs;
 
 public class LoginResponseDto
 {
