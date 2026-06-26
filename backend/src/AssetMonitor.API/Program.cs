@@ -3,13 +3,18 @@ using AssetMonitor.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-
+using AssetMonitor.API.Middlewares;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using AssetMonitor.Application.Features.Users.Validators;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers();
 
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new()
@@ -45,7 +50,8 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
-
+// FluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -84,7 +90,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
-
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
+app.UseMiddleware<ExceptionMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -97,7 +104,6 @@ app.UseCors("AllowFrontend");
 // Depois autenticação
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

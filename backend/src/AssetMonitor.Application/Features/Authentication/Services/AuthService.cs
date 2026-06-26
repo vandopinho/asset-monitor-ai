@@ -1,9 +1,8 @@
-using AssetMonitor.Application.DTOs.Auth;
 using AssetMonitor.Application.Features.Authentication.DTOs;
 using AssetMonitor.Application.Features.Authentication.Interfaces;
 using AssetMonitor.Application.Features.Users.Interfaces;
 using AssetMonitor.Application.Interfaces;
-
+using AssetMonitor.Application.Common.Exceptions;
 namespace AssetMonitor.Application.Features.Authentication.Services;
 
 public class AuthService : IAuthService
@@ -26,17 +25,17 @@ public class AuthService : IAuthService
             .GetByEmailAsync(request.Email);
 
         if (user is null)
-            return null;
+            throw new InvalidCredentialsException();
 
         if (!user.Active || user.IsDeleted)
-            return null;
+            throw new UserInactiveException();
 
         var validPassword = BCrypt.Net.BCrypt.Verify(
             request.Password,
             user.PasswordHash);
 
         if (!validPassword)
-            return null;
+            throw new InvalidCredentialsException();
 
         var token = _jwtTokenGenerator.GenerateToken(
             user.Id,

@@ -1,8 +1,10 @@
+using AssetMonitor.Application.Common.Responses;
 using AssetMonitor.Application.Features.Authentication.DTOs;
 using AssetMonitor.Application.Features.Authentication.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using AssetMonitor.Application.Features.Users.DTOs;
 
 namespace AssetMonitor.API.Controllers;
 
@@ -18,25 +20,23 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(
-        LoginRequestDto request)
+    public async Task<IActionResult> Login(LoginRequestDto request)
     {
         var response = await _service.LoginAsync(request);
 
         if (response is null)
-            return Unauthorized(new
-            {
-                message = "Invalid credentials."
-            });
+            return Unauthorized();
 
-        return Ok(response);
+        return Ok(ApiResponse<LoginResponseDto>.Ok(response));
     }
+
     [HttpGet("me")]
     [Authorize]
     public async Task<IActionResult> Me()
     {
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
-                         ?? User.FindFirst("sub")?.Value;
+        var userIdClaim =
+            User.FindFirst(ClaimTypes.NameIdentifier)?.Value ??
+            User.FindFirst("sub")?.Value;
 
         if (userIdClaim is null)
             return Unauthorized();
@@ -45,9 +45,6 @@ public class AuthController : ControllerBase
 
         var user = await _service.GetCurrentUserAsync(userId);
 
-        if (user is null)
-            return NotFound();
-
-        return Ok(user);
+        return Ok(ApiResponse<UserInfoDto>.Ok(user));
     }
 }
