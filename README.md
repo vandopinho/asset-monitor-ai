@@ -174,3 +174,28 @@ Projeto em evolução contínua
 ```bash
 cd src/AssetMonitor.API
 dotnet run
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+📌 Estrutura
+
+AssetMonitorAI
+│
+├── backend/
+│ ├── Domain
+│ ├── Application
+│ ├── Infrastructure
+│ └── API
+│
+├── frontend/
+│ ├── components
+│ ├── pages
+│ ├── layout
+│ ├── services
+│ └── styles
