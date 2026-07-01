@@ -183,19 +183,20 @@ npm install
 npm run dev
 ```
 
-📌 Estrutura
+## 📌 Estrutura
 
+```bash
 AssetMonitorAI
-│
 ├── backend/
-│ ├── Domain
-│ ├── Application
-│ ├── Infrastructure
-│ └── API
+│   ├── Domain/
+│   ├── Application/
+│   ├── Infrastructure/
+│   └── API/
 │
 ├── frontend/
-│ ├── components
-│ ├── pages
-│ ├── layout
-│ ├── services
-│ └── styles
+│   ├── components/
+│   ├── pages/
+│   ├── layout/
+│   ├── services/
+│   └── styles/
+```
