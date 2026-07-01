@@ -12,35 +12,45 @@ O **Asset Monitor AI** é uma plataforma SaaS moderna para monitoramento de ativ
 
 Projeto em evolução contínua
 
-- Dashboard  
-- Usuários  
-- Login  
+- Dashboard base
+- Usuários (CRUD)
+- Equipamentos (CRUD completo no backend + Swagger)
+- Login inicial com JWT
 
 ---
 
 ## 🎯 Funcionalidades
 
 ### ✔️ Implementado
-- Autenticação JWT (base)
-- Layout SaaS (Sidebar + Topbar estilo Stripe/Linear)
-- Dashboard com KPIs iniciais
-- CRUD de usuários (frontend)
-- Design System próprio com CSS variables
-- Estrutura Clean Architecture no backend
+- Autenticação JWT (base funcional)
+- Estrutura completa de Clean Architecture
+- CRUD de usuários
+- CRUD de equipamentos (backend completo)
+- Validações de domínio (ex: equipamento duplicado por serial)
+- Exceptions centralizadas + Middleware global
+- Repository Pattern
+- Entity Framework Core + PostgreSQL
+- Swagger funcional
+- Design System inicial no frontend (SaaS UI base)
+
+---
 
 ### 🚧 Em desenvolvimento
 - Login completo com hash de senha (BCrypt)
-- CRUD de equipamentos
-- CRUD de clientes
-- Paginação e filtros
-- Loading states / skeleton UI
+- Integração frontend ↔ backend (equipamentos)
+- CRUD de clientes (nova entidade)
+- Paginação e filtros globais
+- Melhorias de UX (loading, empty states, error states)
+
+---
 
 ### 🔮 Futuro
 - Alertas em tempo real (SignalR)
 - Relatórios PDF automáticos
-- Assistente IA integrado
+- Assistente IA integrado (OpenAI / Ollama)
 - Dashboards analíticos avançados
-- Multi-tenant SaaS
+- Multi-tenant SaaS (estrutura enterprise)
+- Auditoria completa (Audit Logs por ação usuário/ativo)
 
 ---
 
@@ -49,16 +59,18 @@ Projeto em evolução contínua
 ### Backend
 - ASP.NET Core 9
 - Entity Framework Core
-- PostgreSQL
+- PostgreSQL (Npgsql)
 - JWT Authentication
 - Clean Architecture
+- Repository Pattern
+- Domain-Driven Design (parcial)
 
 ### Frontend
 - React + TypeScript
 - Vite
 - React Router DOM
 - Axios
-- CSS Design System próprio (SaaS UI)
+- CSS Design System próprio (SaaS UI inspirado em Stripe/Linear)
 
 ### Infraestrutura (futuro)
 - Docker Compose
@@ -74,16 +86,11 @@ Projeto em evolução contínua
 ## 🏛️ Arquitetura
 
 - Clean Architecture
+- Domain / Application / Infrastructure / API
 - Repository Pattern
 - Dependency Injection
 - SOLID Principles
-
-### Camadas
-
-- Domain  
-- Application  
-- Infrastructure  
-- API  
+- Exceptions centralizadas via Middleware
 
 ---
 
@@ -94,6 +101,7 @@ Projeto em evolução contínua
   - UserId
   - Email
   - Role
+- BCrypt (em implementação)
 - Configuração via `appsettings.json`
 
 ---
@@ -110,33 +118,53 @@ Projeto em evolução contínua
 - Estrutura de login
 - Segurança base
 
-### 🟨 Sprint 3 — Core Backend (em andamento)
-- Login completo
-- Hash de senha (BCrypt)
-- CRUD usuários
-- CRUD equipamentos
+---
 
-### 🟪 Sprint 4 — Frontend SaaS UI (em andamento)
-- Layout Stripe/Linear
-- Dashboard base
-- Tabela de usuários
-- UX foundation
+### 🟩 Sprint 3 — Core Backend (FINALIZADA ✔)
+- CRUD de usuários
+- CRUD de equipamentos
+- Validação de serial number único
+- Exceptions customizadas
+- Middleware global de erros
+- Migrations aplicadas
+- Banco PostgreSQL integrado
+- Swagger funcional
 
-### 🟩 Sprint 5 — Inteligência & Tempo Real (futuro)
-- SignalR (real-time)
-- IA assistant
-- Reports PDF
+---
+
+### 🟨 Sprint 4 — Integração Frontend (PRÓXIMA)
+- Tela de login funcional (JWT real)
+- CRUD de equipamentos no frontend
+- Integração com API (Axios service layer)
+- Tabelas com loading + empty state
+- UX mais polido (SaaS feel)
+
+---
+
+### 🟪 Sprint 5 — Evolução de Produto
+- CRUD clientes
+- Relacionamento User ↔ Equipment ↔ Client
+- Filtros e paginação backend
+- Melhorias de performance
+
+---
+
+### 🟩 Sprint 6 — Inteligência & Tempo Real (futuro)
+- SignalR (real-time updates)
+- Audit Logs (histórico completo)
+- IA assistant (consultas e insights)
+- Relatórios PDF automáticos
 - Analytics avançado
 
 ---
 
 ## 🎨 UI / UX
 
-- Sidebar fixa estilo SaaS (Stripe/Linear inspired)
+- Sidebar estilo SaaS (Stripe/Linear inspired)
 - Topbar contextual por rota
 - Design system com CSS variables
-- Hierarquia visual limpa e consistente
-- Base pronta para escala de produto real
+- Foco em consistência e escalabilidade visual
+- Base pronta para produto real SaaS
 
 ---
 
@@ -146,27 +174,3 @@ Projeto em evolução contínua
 ```bash
 cd src/AssetMonitor.API
 dotnet run
-```
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-
-📌 Estrutura
-AssetMonitorAI
-│
-├── backend/
-│   ├── Domain
-│   ├── Application
-│   ├── Infrastructure
-│   └── API
-│
-├── frontend/
-│   ├── components
-│   ├── pages
-│   ├── layout
-│   ├── services
-│   └── styles
