@@ -45,6 +45,9 @@ public class AuthController : ControllerBase
 
         var user = await _service.GetCurrentUserAsync(userId);
 
+        if (user is null)
+            return NotFound();
+            
         return Ok(ApiResponse<UserInfoDto>.Ok(user));
     }
 }

@@ -11,7 +11,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<User> Users => Set<User>();
-
+    public DbSet<Equipment> Equipments => Set<Equipment>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

@@ -1,4 +1,3 @@
-using AssetMonitor.Application.DTOs.Auth;
 using AssetMonitor.Application.Features.Authentication.DTOs;
 
 namespace AssetMonitor.Application.Features.Authentication.Interfaces;

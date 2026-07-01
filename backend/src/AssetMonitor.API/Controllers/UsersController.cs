@@ -65,7 +65,8 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> Update(Guid id, UpdateUserDto dto)
     {
         var user = await _service.UpdateAsync(id, dto);
-
+        if (user is null)
+            return NotFound();
         return Ok(ApiResponse<UserDto>.Ok(user));
     }
 }

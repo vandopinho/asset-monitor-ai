@@ -1,17 +1,18 @@
+using AssetMonitor.Application.Features.Authentication.Interfaces;
+using AssetMonitor.Application.Features.Authentication.Services;
+using AssetMonitor.Application.Features.Equipment.Interfaces;
+using AssetMonitor.Application.Features.Equipment.Services;
 using AssetMonitor.Application.Features.Users.Interfaces;
 using AssetMonitor.Application.Features.Users.Services;
 using AssetMonitor.Application.Interfaces;
 using AssetMonitor.Application.Settings;
 using AssetMonitor.Infrastructure.Persistence.Context;
+using AssetMonitor.Infrastructure.Persistence.Repositories;
 using AssetMonitor.Infrastructure.Repositories;
 using AssetMonitor.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AssetMonitor.Application.Features.Authentication.Interfaces;
-using AssetMonitor.Application.Features.Authentication.Services;
-namespace AssetMonitor.Infrastructure;
-
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(
@@ -37,7 +38,13 @@ public static class DependencyInjection
 
         // 🔐 JWT Generator
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddScoped<
+            IEquipmentRepository,
+            EquipmentRepository>();
 
+        services.AddScoped<
+            IEquipmentService,
+            EquipmentService>();
         return services;
     }
 }

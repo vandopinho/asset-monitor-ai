@@ -54,6 +54,25 @@ public sealed class ExceptionMiddleware
                 message = ex.Message
             });
         }
+        catch (EquipmentNotFoundException ex)
+        {
+            context.Response.StatusCode = StatusCodes.Status404NotFound;
+
+            await context.Response.WriteAsJsonAsync(new
+            {
+                message = ex.Message
+            });
+        }
+
+        catch (EquipmentAlreadyExistsException ex)
+        {
+            context.Response.StatusCode = StatusCodes.Status409Conflict;
+
+            await context.Response.WriteAsJsonAsync(new
+            {
+                message = ex.Message
+            });
+        }
         catch (Exception)
         {
             context.Response.StatusCode =
